@@ -84,7 +84,7 @@ void eXoCAN::begin(idtype addrType, int brp, bool singleWire, bool alt, bool pul
     MMIO32(mcr) |= (1 << 6) | (1 << 0); // set ABOM, init req (INRQ)
     while (periphBit(INAK) == 0)        // wait for hw ready
         ;
-    MMIO32(btr) = (3 << 20) | (12 << 16) | (brp << 0); // 125K, 12/15=80% sample pt. prescale = 15
+    MMIO32(btr) = (2 << 20) | (11 << 16) | (brp << 0); // 125K, 12/15=80% sample pt. prescale = 15
     // periphBit(ti0r, 2) = _extIDs;                      // 0 = std 11b ids, 1 = extended 29b ids
     periphBit(INRQ) = 0;                               // request init leave to Normal mode
     while (periphBit(INAK))                            // wait for hw
